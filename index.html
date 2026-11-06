@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اليونا</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Tahoma,Arial;
+ background:#fff3f8;
+ color:#742746;
+}
+header{
+ background:linear-gradient(135deg,#c52e70,#ed83ae);
+ color:white;
+ text-align:center;
+ padding:35px 15px;
+ border-radius:0 0 35px 35px;
+}
+header h1{font-size:38px;margin:0}
+header p{margin:10px 0 0}
+.container{max-width:950px;margin:25px auto;padding:15px}
+.card{
+ background:white;
+ padding:22px;
+ border-radius:20px;
+ margin-bottom:18px;
+ box-shadow:0 5px 18px #e8a9c333;
+}
+h2{color:#c52e70;margin-top:0}
+input,button{
+ padding:12px;
+ border-radius:12px;
+ border:1px solid #f0b5ce;
+ font-size:15px;
+}
+input{width:70%;background:#fffafd}
+button{
+ background:#ce4b83;color:white;
+ border:none;cursor:pointer;
+}
+button:hover{background:#a82d65}
+.task{
+ display:flex;justify-content:space-between;
+ align-items:center;padding:10px;
+ border-bottom:1px solid #f8dce8;
+}
+.task span{overflow-wrap:anywhere}
+.done{text-decoration:line-through;opacity:.5}
+footer{text-align:center;padding:20px;color:#b45b83}
+</style>
+</head>
+<body>
+
+<header>
+<h1>اليونا 🌙</h1>
+<p>خططي ليومك وحققي أحلامك</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>أهلاً بكِ في اليونا 💗</h2>
+<p>ابدئي يومك بخطوة صغيرة نحو أحلامك.</p>
+</div>
+
+<div class="card">
+<h2>مهامي اليومية ✨</h2>
+<input id="taskInput" placeholder="اكتبي مهمتك هنا">
+<button onclick="addTask()">إضافة</button>
+<div id="tasks"></div>
+</div>
+
+<div class="card">
+<h2>هدفي لهذا الأسبوع 🌸</h2>
+<input id="goal" placeholder="اكتبي هدفك">
+<button onclick="saveGoal()">حفظ</button>
+<p id="savedGoal"></p>
+</div>
+
+</div>
+
+<footer>صُنع بحب ♡ اليونا 2026</footer>
+
+<script>
+function addTask(){
+ let input=document.getElementById("taskInput");
+ if(!input.value.trim())return;
+ let task=document.createElement("div");
+ task.className="task";
+ let span=document.createElement("span");
+ span.textContent=input.value;
+ span.onclick=()=>span.classList.toggle("done");
+ let del=document.createElement("button");
+ del.textContent="حذف";
+ del.onclick=()=>task.remove();
+ task.append(span,del);
+ document.getElementById("tasks").append(task);
+ input.value="";
+}
+function saveGoal(){
+ let value=document.getElementById("goal").value;
+ document.getElementById("savedGoal").textContent=value;
+}
+</script>
+
+</body>
+</html>
